@@ -15,7 +15,6 @@ export default function Login() {
     try {
       const res = await login(email, password);
 
-      // redirect based on role
       if (res?.role === "admin") {
         navigate("/admin");
       } else {
