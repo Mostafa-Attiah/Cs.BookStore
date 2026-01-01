@@ -4,11 +4,11 @@ export default function BookCard({ book, onAdd }) {
   const [added, setAdded] = useState(false);
 
   const handleAdd = () => {
-    onAdd(book);          // Add book to cart
-    setAdded(true);       // Show "Added" message
+    onAdd(book);         
+    setAdded(true);      
 
     setTimeout(() => {
-      setAdded(false);    // Hide message after 1.5 seconds
+      setAdded(false);    
     }, 1500);
   };
 
