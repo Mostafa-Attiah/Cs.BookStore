@@ -33,7 +33,7 @@ export default function Navbar() {
               <NavLink className="nav-link" to="/contact">Contact</NavLink>
             </li>
 
-            {/* ADMIN ONLY */}
+            
             {user?.role === "admin" && (
               <li className="nav-item">
                 <NavLink className="nav-link text-danger fw-bold" to="/admin">
@@ -42,7 +42,7 @@ export default function Navbar() {
               </li>
             )}
 
-            {/* NOT LOGGED IN */}
+          
             {!user && (
               <>
                 <li className="nav-item">
@@ -54,7 +54,7 @@ export default function Navbar() {
               </>
             )}
 
-            {/* LOGGED IN */}
+           
             {user && (
               <li className="nav-item">
                 <button
