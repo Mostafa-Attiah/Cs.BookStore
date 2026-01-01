@@ -12,7 +12,7 @@ export default function Admin() {
   });
   const [isEditing, setIsEditing] = useState(false);
 
-  // Fetch books from backend
+  
   const fetchBooks = () => {
     fetch("http://localhost:5000/api/books")
       .then(res => res.json())
@@ -29,7 +29,7 @@ export default function Admin() {
     else setForm({ ...form, [name]: value });
   };
 
-  // Add or update book
+  
   const submitBook = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -40,32 +40,32 @@ export default function Admin() {
     if (form.image) formData.append("image", form.image);
 
     if (isEditing) {
-      // UPDATE
+     
       await fetch(`http://localhost:5000/api/books/${form.id}`, {
         method: "PUT",
         body: formData,
       });
       setIsEditing(false);
     } else {
-      // ADD
+     
       await fetch("http://localhost:5000/api/books", {
         method: "POST",
         body: formData,
       });
     }
 
-    // Reset form
+   
     setForm({ id: null, title: "", author: "", price: "", category: "", image: null });
     fetchBooks();
   };
 
-  // Delete book
+  
   const deleteBook = async (id) => {
     await fetch(`http://localhost:5000/api/books/${id}`, { method: "DELETE" });
     fetchBooks();
   };
 
-  // Edit book - populate form
+ 
   const editBook = (book) => {
     setForm({
       id: book.id,
