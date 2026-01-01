@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
     return saved ? JSON.parse(saved) : null;
   });
 
-  // ✅ THIS IS WHERE YOUR CODE GOES
+ 
   const login = async (email, password) => {
     const res = await axios.post("http://localhost:5000/api/auth/login", {
       email,
@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
   );
 }
 
-// hook
+
 export function useAuth() {
   return useContext(AuthContext);
 }
