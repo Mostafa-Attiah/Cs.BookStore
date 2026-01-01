@@ -9,7 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// MySQL connection
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -22,14 +21,12 @@ db.connect((err) => {
   else console.log("MySQL Connected");
 });
 
-// Multer setup
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
 });
 const upload = multer({ storage });
 
-// USERS AUTH
 app.post("/api/auth/register", (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password)
@@ -58,14 +55,13 @@ app.post("/api/auth/login", (req, res) => {
       res.json({
         id: user.id,
         name: user.name,
-        role: user.role // 👈 VERY IMPORTANT
+        role: user.role
       });
     }
   );
 });
 
 
-// BOOKS CRUD
 app.get("/api/books", (req, res) => {
   const sql = "SELECT * FROM books";
   db.query(sql, (err, result) => {
@@ -96,7 +92,6 @@ app.delete("/api/books/:id", (req, res) => {
   });
 });
 
-// ORDERS
 app.post("/api/orders", (req, res) => {
   const { userId, cart, total } = req.body;
   if (!userId || cart.length === 0)
