@@ -6,7 +6,7 @@ export default function Books() {
   const { addToCart } = useCart();
   const [books, setBooks] = useState([]);
 
-  // Fetch books from backend
+  
   const fetchBooks = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/books");
